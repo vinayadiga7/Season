@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 2rem;
+}
+
+.row {
+  width: 114rem;
+  margin: 0 auto;
+  height: 100%;
+}
+.row:not(:last-child) {
+  margin-bottom: 4rem;
+}
+
+.col_1_of_2 {
+  float: left;
+  width: calc((100% - 3.5rem) / 2);
+}
+
+.col_1_of_2:not(:last-child) {
+  margin-right: 3.5rem;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.borderRed {
+  border: 1rem solid orangered;
+}

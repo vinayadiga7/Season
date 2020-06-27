@@ -1,17 +1,72 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import classes from "./index.module.css";
+import SeasonDisplay from "./seasonDisplay";
+import Spinner from "./spinner";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class App extends React.Component {
+  constructor(props) {
+    // this will initialise this.props of the component with some necessary
+    // properties otherwise this.props will be undefined
+    super(props);
+    this.state = {
+      latitude: null,
+      errorMessage: null,
+    };
+    console.log("From Constructor");
+  }
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  renderContent() {
+    if (this.state.latitude && !this.state.errorMessage) {
+      return (
+        <div className={classes.row}>
+          <div className={classes.col_1_of_2}>
+            <SeasonDisplay latitude={this.state.latitude} />
+          </div>
+        </div>
+      );
+    }
+
+    if (!this.state.latitude && this.state.errorMessage) {
+      return (
+        <div className={classes.row}>
+          <div className={classes.col_1_of_2}>
+            <SeasonDisplay error={this.state.errorMessage} />
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className={classes.row}>
+        <div className={classes.col_1_of_2}>
+          <Spinner text="Please allow browser to use your location" />
+        </div>
+      </div>
+    );
+  }
+
+  componentDidMount() {
+    window.navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          latitude: position.coords.latitude,
+        });
+      },
+      (error) => {
+        this.setState({
+          errorMessage: error.message,
+        });
+      }
+    );
+    console.log("From ComponentDidMount");
+  }
+
+  render() {
+    //conditional rendering
+    console.log(this.state);
+    return <div className={classes.borderRed}>{this.renderContent()}</div>;
+  }
+}
+
+ReactDOM.render(<App />, document.querySelector("#root"));

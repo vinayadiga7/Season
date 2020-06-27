@@ -1,0 +1,38 @@
+.card {
+  height: 60%;
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  font-size: 2rem;
+  color: #4a575e;
+  box-shadow: 0 2rem 3rem #000000cc;
+  position: relative;
+}
+
+.left-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.summer {
+  background-color: orange;
+}
+
+.winter {
+  background-color: aliceblue;
+}
+
+.right-icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.card.winter i {
+  color: blue;
+}
+
+.card.summer i {
+  color: red;
+}
