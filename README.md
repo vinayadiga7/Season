@@ -69,7 +69,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 # This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 # Season
-
-React app which finds season based on your GPS location
-
-> > > > > > > ac3e797df47485c9d890c776b88fccfc799ae62f
